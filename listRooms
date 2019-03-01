@@ -1,0 +1,6 @@
+#!/bin/bash
+# listRooms
+
+mvn package
+
+java -cp target/javaToMongo-1.0.jar:/Users/davidtaylor/Documents/works/java/vendor/mysql-connector-java-8.0.15.jar:/Users/davidtaylor/Documents/works/java/vendor/common-lang3.jar:/Users/davidtaylor/Documents/works/java/vendor/cc-server.jar org.mathematicalthinking.javapp.ListRooms
