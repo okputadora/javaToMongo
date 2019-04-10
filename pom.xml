@@ -38,13 +38,32 @@
       <artifactId>commons-lang3</artifactId>
       <version>3.8.1</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.commons.codec/source >
+    <dependency>
+        <groupId>org.apache.commons.codec</groupId>
+        <artifactId>source</artifactId>
+        <version>1.3.0</version>
+    </dependency -->
+    <!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
+    <dependency>
+        <groupId>javax.xml.bind</groupId>
+        <artifactId>jaxb-api</artifactId>
+        <version>2.2.3</version>
+    </dependency>
     <dependency>
       <groupId>de.fhg.ipsi</groupId>
-      <artifactId>concertchat</artifactId>
+      <artifactId>concertchat_server</artifactId>
       <version>3.0</version>
       <scope>system</scope>
       <systemPath>${project.basedir}/../vendor/cc-server.jar</systemPath>
-  </dependency>
+    </dependency>
+    <dependency>
+      <groupId>de.fhg.ipsi</groupId>
+      <artifactId>concertchat_base</artifactId>
+      <version>3.0</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/../vendor/cc-base.jar</systemPath>
+    </dependency>
 
 
   </dependencies>
