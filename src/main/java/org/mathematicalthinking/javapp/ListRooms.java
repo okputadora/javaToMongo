@@ -35,7 +35,9 @@ public class ListRooms
       System.out.println( "Got connections" );
       Statement stmtCh = ccConn.createStatement();
       System.out.println( "Got stmtCh" );
-      String strSelectCh = "select * from r4349443A31333438303433393839323931 order by PRIMKEY";
+      // String strSelectCh = "select * from r4349443A31333438303433393839323931 order by PRIMKEY";
+      String strSelectCh = "select * from r4349443A31353236393535323430383835 order by PRIMKEY";
+      // String strSelectCh = "select * from r4349443A31353336323831393331343838 order by PRIMKEY";
       System.out.println("The SQL query is: " + strSelectCh);
       // get the ResultSet
       ResultSet rsetCh = stmtCh.executeQuery(strSelectCh);
@@ -55,9 +57,16 @@ public class ListRooms
           // System.out.println( "Message in Hex: " + sb);
 
           ObjectInputStream objectInputStream = new ObjectInputStream(descCh.getBinaryStream());
+          // channelMessageContainer containes the message in
           MessageContainer channelMessageContainer = (MessageContainer) objectInputStream.readObject();
           //MessageContainer channelMessage = (ChannelMessage) objectInputStream.readObject();
           objectInputStream.close();
+
+          objectInputStream = new ObjectInputStream(descCh.getBinaryStream());
+          Object o = objectInputStream.readObject();
+          System.out.println("      desCh message class name is: " + o.getClass().getName());
+          objectInputStream.close();
+
           String channelID = channelMessageContainer.getChannelID();
           if (rowCountCh == 0) {
             // get room information from the channel id from the first record
@@ -88,14 +97,28 @@ public class ListRooms
               System.out.println("missing aroom record");
             }
           }
+          System.out.println("   messageID: " + channelMessageContainer.getMessageID());
+          System.out.println("      Type: " + channelMessageContainer.getType());
+          System.out.println("      TYPE: " + rsetCh.getString("TYPE"));
+          System.out.println("      globalIndex: " + channelMessageContainer.getGlobalIndex());
+          System.out.println("      TypeIndex: " + channelMessageContainer.getTypeIndex());
+          System.out.println("      timestamp: " + channelMessageContainer.getTimeStamp());
           String type = rsetCh.getString("TYPE");
-          System.out.println("   message type " + type);
+          System.out.println("      message type " + type);
           System.out.println("      ChannelID: " + channelID);
           switch(type) {
             case "TabbedChat_Message" :
               System.out.println("      TabbedChat_Message to be processed.");
-              String message = rsetCh.getBytes("message").toString();
-              System.out.println("      " + message);
+              // String message = rsetCh.getBytes("message").toString();
+              // System.out.println("      " + message);
+              Object o2 = channelMessageContainer.getMessage();
+              System.out.println("      o2 message class name is: " + o2.getClass().getName());
+              // MessageContainer msgContainer = (MessageContainer) o2;
+              // System.out.println ("      msgContainer.getMessageID: " + msgContainer.getMessageID());
+              // Object o = channelMessageContainer.getMessage();
+              // System.out.println("      class name is: " + o.getClass().getName());
+              // System.out.println("      messageBytes: " + channelMessageContainer.getMessage());
+              //System.out.println("      persistent: " + channelMessageContainer.getPersistent());
               break;
             default :
               System.out.println("      Missing object for this message type.");

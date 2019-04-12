@@ -3,6 +3,6 @@
 
 mvn package
 
-java -cp target/javaToMongo-1.0.jar:/Users/davidtaylor/Documents/works/java/vendor/mysql-connector-java-8.0.15.jar:/Users/davidtaylor/Documents/works/java/vendor/common-lang3.jar:/Users/davidtaylor/Documents/works/java/vendor/cc-server.jar:/Users/davidtaylor/Documents/works/java/vendor/cc-base.jar org.mathematicalthinking.javapp.ListRooms
+java -cp target/javaToMongo-1.0.jar:/Users/davidtaylor/Documents/works/java/vendor/mysql-connector-java-8.0.15.jar:/Users/davidtaylor/Documents/works/java/vendor/common-lang3.jar:/Users/davidtaylor/Documents/works/java/vendor/cc-server.jar:/Users/davidtaylor/Documents/works/java/vendor/cc-base.jar:/Users/davidtaylor/Documents/works/java/vendor/base-framework.jar org.mathematicalthinking.javapp.ListRooms
 
 # :/Users/davidtaylor/Documents/works/java/vendor/commons-codec-1.12.jar

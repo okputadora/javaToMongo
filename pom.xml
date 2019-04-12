@@ -64,6 +64,13 @@
       <scope>system</scope>
       <systemPath>${project.basedir}/../vendor/cc-base.jar</systemPath>
     </dependency>
+    <dependency>
+      <groupId>de.fhg.ipsi</groupId>
+      <artifactId>base_framework</artifactId>
+      <version>3.0</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/../vendor/base-framework.jar</systemPath>
+    </dependency>
 
 
   </dependencies>
