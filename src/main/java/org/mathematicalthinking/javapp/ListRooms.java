@@ -1,9 +1,14 @@
 package org.mathematicalthinking.javapp;
 
+import java.lang.reflect.*;
+
 import de.fhg.ipsi.concertchat.servlets.applications.*;
 import de.fhg.ipsi.concertchat.persistency.MessageContainer;
 import de.fhg.ipsi.concertchat.applications.tabbedChat.whiteboard.TabbedWhiteboardDescriptor;
 import de.fhg.ipsi.concertchat.framework.agilo.channel.ChannelMessage;
+import de.fhg.ipsi.concertchat.applications.tabbedChat.geogebraBoard.TabbedGeogebraBoardDescriptor;
+import de.fhg.ipsi.concertchat.applications.tabbedChat.geogebraBoard.TabbedGeogebraBoard;
+import de.fhg.ipsi.concertchat.applications.tabbedChat.ITabbedApplication;
 
 //import org.apache.commons.lang3.builder.*;
 import java.io.*;
@@ -18,6 +23,7 @@ import java.sql.*;
  */
 public class ListRooms
 {
+  public static final String TAB_GEO_BOARD_DESC = "de.fhg.ipsi.concertchat.applications.tabbedChat.geogebraBoard.TabbedGeogebraBoardDescriptor";
   public static void main( String[] args )
   {
     System.out.println( "Hello Java!" );
@@ -80,19 +86,7 @@ public class ListRooms
             ResultSet rset = stmt.executeQuery(strSelect);
             int rowCount = 0;
             if (rset.next()) {
-              String roomID = rset.getString("roomID");
-              String roomName = rset.getString("roomName");
-              String communityName = rset.getString("c.CommunityName");
-              String roomTypeName = rset.getString("rt.RoomTypeName");
-              String topicName = rset.getString("t.TopicName"); //corresponds with vmt.mathforum.org/vmtwiki/index.php/VMTTopics/<TopicName>
-              String subjectName = rset.getString("s.SubjectName");
-              int subjectOrder = rset.getInt("s.SubjectOrder");
-              System.out.println("Room: " + roomID + " - " + roomName);
-              System.out.println("      community: " + communityName);
-              System.out.println("      room type: " + roomTypeName);
-              System.out.println("      topic: " + topicName);
-              System.out.println("      subject: " + subjectName);
-              System.out.println("      subject order: " + subjectOrder);
+              printRoomRec(rset);
             } else {
               System.out.println("missing aroom record");
             }
@@ -113,6 +107,15 @@ public class ListRooms
               // System.out.println("      " + message);
               Object o2 = channelMessageContainer.getMessage();
               System.out.println("      o2 message class name is: " + o2.getClass().getName());
+              if (o2.getClass().getName() == TAB_GEO_BOARD_DESC) {
+                TabbedGeogebraBoardDescriptor tgbd = (TabbedGeogebraBoardDescriptor)channelMessageContainer.getMessage();
+                System.out.println("        Descriptor Name: " + tgbd.getName());
+                System.out.println("        Descriptor ID: " + tgbd.getID());
+                Field initFile = TabbedGeogebraBoardDescriptor.class.getDeclaredField("initFile");
+                initFile.setAccessible(true);
+                Object initValue = initFile.get(tgbd);
+                System.out.println("        initFile: " + initValue);
+              }
               // MessageContainer msgContainer = (MessageContainer) o2;
               // System.out.println ("      msgContainer.getMessageID: " + msgContainer.getMessageID());
               // Object o = channelMessageContainer.getMessage();
@@ -139,6 +142,31 @@ public class ListRooms
     } catch (Exception ex){
       // handle any other errors
       System.out.println("Exception: " + ex);
+    }
+  }
+  private static void printRoomRec(ResultSet rset) {
+    try {
+      String roomID = rset.getString("roomID");
+      String roomName = rset.getString("roomName");
+      String communityName = rset.getString("c.CommunityName");
+      String roomTypeName = rset.getString("rt.RoomTypeName");
+      String topicName = rset.getString("t.TopicName"); //corresponds with vmt.mathforum.org/vmtwiki/index.php/VMTTopics/<TopicName>
+      String subjectName = rset.getString("s.SubjectName");
+      int subjectOrder = rset.getInt("s.SubjectOrder");
+      System.out.println("Room: " + roomID + " - " + roomName);
+      System.out.println("      community: " + communityName);
+      System.out.println("      room type: " + roomTypeName);
+      System.out.println("      topic: " + topicName);
+      System.out.println("      subject: " + subjectName);
+      System.out.println("      subject order: " + subjectOrder);
+    } catch (SQLException ex) {
+      // handle any SQL errors
+      System.out.println("printRoomRec SQLException: " + ex.getMessage());
+      System.out.println("printRoomRec SQLState: " + ex.getSQLState());
+      System.out.println("printRoomRec VendorError: " + ex.getErrorCode());
+    } catch (Exception ex){
+      // handle any other errors
+      System.out.println("printRoomRec Exception: " + ex);
     }
   }
 }

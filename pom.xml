@@ -71,6 +71,20 @@
       <scope>system</scope>
       <systemPath>${project.basedir}/../vendor/base-framework.jar</systemPath>
     </dependency>
+    <dependency>
+      <groupId>de.fhg.ipsi</groupId>
+      <artifactId>cc_whiteboardchat</artifactId>
+      <version>2.0.16</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/../vendor/cc-whiteboardchat-2.0.16.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>net.sf.concertchat</groupId>
+      <artifactId>cc-tabbedchat</artifactId>
+      <version>2.0.5</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/../vendor/cc-tabbedchat-2.0.5.jar</systemPath>
+    </dependency>
 
 
   </dependencies>
