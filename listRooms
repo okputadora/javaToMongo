@@ -4,5 +4,7 @@
 mvn package
 
 java -cp target/javaToMongo-1.0.jar:/Users/davidtaylor/Documents/works/java/vendor/mysql-connector-java-8.0.15.jar:/Users/davidtaylor/Documents/works/java/vendor/common-lang3.jar:/Users/davidtaylor/Documents/works/java/vendor/cc-server.jar:/Users/davidtaylor/Documents/works/java/vendor/cc-base.jar:/Users/davidtaylor/Documents/works/java/vendor/base-framework.jar:/Users/davidtaylor/Documents/works/java/vendor/cc-whiteboardchat-2.0.16.jar:/Users/davidtaylor/Documents/works/java/vendor/cc-tabbedchat-2.0.5.jar org.mathematicalthinking.javapp.ListRooms
+java -cp target/javaToMongo-1.0.jar:~/Users/ok_computadora/Documents/21PSTEM/java/vendor/mysql-connector-java-8.0.15.jar:~/Users/ok_computadora/Documents/21PSTEM/java/vendor/common-lang3.jar:~/Users/ok_computadora/Documents/21PSTEM/java/vendor/cc-server.jar:~/Users/ok_computadora/Documents/21PSTEM/java/vendor/cc-base.jar:~/Users/ok_computadora/Documents/21PSTEM/java/vendor/base-framework.jar:~/Users/ok_computadora/Documents/21PSTEM/java/vendor/cc-whiteboardchat-2.0.16.jar:~/Users/ok_computadora/Documents/21PSTEM/java/vendor/cc-tabbedchat-2.0.5.jar org.mathematicalthinking.javapp.ListRooms
+
 
 # :/Users/davidtaylor/Documents/works/java/vendor/commons-codec-1.12.jar
